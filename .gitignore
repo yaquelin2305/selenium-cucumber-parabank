@@ -1,0 +1,15 @@
+# Carpeta de compilación de Maven
+target/
+
+# Configuración de editores
+.idea/
+*.iml
+.vscode/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Evidencias y reportes generados al ejecutar
+screenshots/
+reports/
