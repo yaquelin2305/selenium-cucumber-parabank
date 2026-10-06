@@ -30,4 +30,18 @@ public class LoginSteps {
                 .as("Con la sesión iniciada debería verse el enlace 'Log Out'")
                 .isTrue();
     }
+
+
+
+    @Cuando("inicio sesión con el usuario {string} y la contraseña {string}")
+    public void inicioSesionConUsuarioYContrasena(String usuario, String contrasena) {
+        new LoginPage().iniciarSesion(usuario, contrasena);
+    }
+
+    @Entonces("veo el mensaje de error {string}")
+    public void veoElMensajeDeError(String mensajeEsperado) {
+        assertThat(new LoginPage().mensajeDeError()).isEqualTo(mensajeEsperado);
+    }
+
+
 }
