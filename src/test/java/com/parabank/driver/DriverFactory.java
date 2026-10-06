@@ -66,6 +66,10 @@ public final class DriverFactory {
         return driver;
     }
 
+        public static boolean hayNavegador() {
+        return DRIVER.get() != null;
+    }
+
     public static void quitDriver() {
         WebDriver driver = DRIVER.get();
         if (driver != null) {

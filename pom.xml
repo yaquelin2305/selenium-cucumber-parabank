@@ -13,14 +13,22 @@
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>4.27.0</selenium.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Versiones de las librerías (se cambian solo aquí) -->
+        <selenium.version>4.35.0</selenium.version>
         <cucumber.version>7.20.1</cucumber.version>
         <junit.version>5.11.3</junit.version>
         <assertj.version>3.26.3</assertj.version>
+
+        <!-- Versiones de los plugins de Maven -->
+        <compiler.plugin.version>3.13.0</compiler.plugin.version>
+        <surefire.plugin.version>3.5.2</surefire.plugin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- BOM de JUnit: fija versiones compatibles entre todas sus piezas -->
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -32,7 +40,7 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Selenium WebDriver: controla el navegador -->
+        <!-- Selenium WebDriver: controla el navegador (incluye Selenium Manager) -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -40,13 +48,14 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Cucumber: escenarios en Gherkin (Dado / Cuando / Entonces) -->
+        <!-- Cucumber: escenarios en Gherkin y step definitions en Java -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Cucumber: permite que JUnit 5 ejecute los escenarios -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
@@ -54,12 +63,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 5: ejecuta las pruebas -->
+        <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Suite de JUnit 5: la usa el runner de Cucumber -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
@@ -77,10 +87,18 @@
 
     <build>
         <plugins>
+            <!-- Compila el código con Java 17 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+            </plugin>
+
+            <!-- Ejecuta las pruebas con "mvn test" -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>${surefire.plugin.version}</version>
             </plugin>
         </plugins>
     </build>
