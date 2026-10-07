@@ -17,5 +17,6 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.parabank")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-report.html")
+@ConfigurationParameter(key = "cucumber.junit-platform.naming-strategy", value = "long")
 public class RunCucumberTest {
 }

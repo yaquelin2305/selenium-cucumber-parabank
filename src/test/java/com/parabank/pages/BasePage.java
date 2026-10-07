@@ -1,5 +1,6 @@
 package com.parabank.pages;
-
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.support.ui.Select;
 import com.parabank.driver.DriverFactory;
 import com.parabank.utils.ConfigReader;
 import org.openqa.selenium.By;
@@ -23,6 +24,7 @@ public abstract class BasePage {
     protected BasePage() {
         this.driver = DriverFactory.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getInt("timeout.seconds")));
+        this.wait.ignoring(StaleElementReferenceException.class);
     }
 
     protected void navegarA(String ruta) {
@@ -62,4 +64,19 @@ public abstract class BasePage {
             return false;
         }
     }
+
+    protected void seleccionar(By localizador, String textoVisible) {
+        wait.until(d -> new Select(d.findElement(localizador)).getOptions().stream()
+                .anyMatch(opcion -> opcion.getText().trim().equals(textoVisible)));
+        new Select(esperarVisible(localizador)).selectByVisibleText(textoVisible);
+    }
+
+    protected String leerTextoDelVisible(By localizador) {
+        return wait.until(d -> d.findElements(localizador).stream()
+                .filter(WebElement::isDisplayed)
+                .map(elemento -> elemento.getText().trim())
+                .findFirst()
+                .orElse(null));
+    }
+
 }
