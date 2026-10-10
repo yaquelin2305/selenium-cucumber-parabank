@@ -29,4 +29,9 @@ public class TransferenciaPage extends BasePage {
         esperarVisible(RESULTADO);
         return leerTextoDelVisible(TITULOS);
     }
+
+    public boolean seCompleto() {
+        return apareceEn(RESULTADO, 5);
+    }
+
 }

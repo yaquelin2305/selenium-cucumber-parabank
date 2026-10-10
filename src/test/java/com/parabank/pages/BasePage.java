@@ -78,5 +78,28 @@ public abstract class BasePage {
                 .findFirst()
                 .orElse(null));
     }
+    protected boolean apareceEn(By localizador, int segundos) {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(segundos))
+                    .until(ExpectedConditions.visibilityOfElementLocated(localizador));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    protected boolean muestraTextoVisible(By localizador, String textoEsperado) {
+        try {
+            return wait.until(d -> d.findElements(localizador).stream()
+                    .anyMatch(elemento -> elemento.isDisplayed()
+                            && elemento.getText().trim().equals(textoEsperado)));
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+
+
+
 
 }
