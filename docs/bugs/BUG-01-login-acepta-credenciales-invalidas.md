@@ -42,7 +42,7 @@ Se muestra el mensaje "The username and password could not be verified." y el us
 
 **Conclusión:** el inicio de sesión no valida las credenciales; cualquier combinación de usuario y contraseña no vacíos da acceso.
 
-**Conclusión:** el inicio de sesión no valida las credenciales; cualquier combinación de usuario y contraseña no vacíos da acceso.
+
 
 ## Impacto
 Cualquier persona puede acceder a datos bancarios (número de cuenta y saldo) sin credenciales válidas.
