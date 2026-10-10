@@ -31,8 +31,18 @@ Se muestra el mensaje "The username and password could not be verified." y el us
 - Ocurre tanto con contraseña incorrecta como con usuario inexistente.
 
 ## Evidencia
-- Captura automática adjunta en el reporte de Cucumber (`target/cucumber-report.html`), generada por el hook `@After`.
 - Escenarios que lo detectan: `src/test/resources/features/login.feature`, etiqueta `@BUG-01`.
+- Captura automática tomada por el hook `@After` al fallar la prueba "contraseña incorrecta":
+
+![Captura automática: Accounts Overview tras iniciar sesión con contraseña incorrecta](evidencias/BUG-01-automatizado.png)
+
+- Reproducción manual con `john` / `clave_mala`:
+
+![Reproducción manual: sesión iniciada como "Test User" con contraseña incorrecta](evidencias/BUG-01-manual.png)
+
+**Conclusión:** el inicio de sesión no valida las credenciales; cualquier combinación de usuario y contraseña no vacíos da acceso.
+
+**Conclusión:** el inicio de sesión no valida las credenciales; cualquier combinación de usuario y contraseña no vacíos da acceso.
 
 ## Impacto
 Cualquier persona puede acceder a datos bancarios (número de cuenta y saldo) sin credenciales válidas.
