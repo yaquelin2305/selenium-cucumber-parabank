@@ -23,6 +23,7 @@ public class Hooks {
         try {
             if (scenario.isFailed() && DriverFactory.hayNavegador()) {
                 byte[] captura = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
+                scenario.log("URL al fallar: " + DriverFactory.getDriver().getCurrentUrl());
                 scenario.attach(captura, "image/png", "Captura al fallar: " + scenario.getName());
             }
         } finally {

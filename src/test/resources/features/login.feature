@@ -15,7 +15,7 @@ Característica: Inicio de sesión
     Y veo la opción para cerrar sesión
 
     
-    @regression
+  @regression
   Esquema del escenario: Inicio de sesión rechazado por <caso>
     Cuando inicio sesión con el usuario "<usuario>" y la contraseña "<contrasena>"
     Entonces veo el mensaje de error "<mensaje>"
