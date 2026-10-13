@@ -11,6 +11,7 @@
 | **Detectado por** | Prueba automatizada de valores límite · escenario "Se rechaza una transferencia con monto negativo" |
 | **Reportado por** | Yaquelin Rugel · 07-10-2026 |
 | **Reproducibilidad** | 1 de 1 ejecución automatizada · Reproducido manualmente el 07-10-2026 |
+| **Último re-test** | 13-10-2026 (automatizado): ❌ sigue presente |
 
 ## Resumen
 ParaBank acepta transferencias con monto negativo. Al transferir -$50.00 desde la cuenta A hacia la cuenta B,

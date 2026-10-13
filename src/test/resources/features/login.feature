@@ -26,10 +26,10 @@ Característica: Inicio de sesión
       | usuario vacío    |         | demo       | Please enter a username and password. |
       | contraseña vacía | john    |            | Please enter a username and password. |
 
-  # BUG-01: ParaBank permite el acceso con credenciales inválidas.
-  # Estos escenarios describen el comportamiento CORRECTO y fallarán hasta que se corrija.
+  # Regresión del BUG-01: ParaBank aceptaba credenciales inválidas (detectado el 06-10-2026).
+  # No reproducible en el re-test del 13-10-2026. Estos escenarios vigilan que no vuelva a ocurrir.
   # Detalle en docs/bugs/BUG-01-login-acepta-credenciales-invalidas.md
-  @regression @known-bug @BUG-01
+  @regression @BUG-01
   Esquema del escenario: Inicio de sesión con credenciales inválidas es rechazado (<caso>)
     Cuando inicio sesión con el usuario "<usuario>" y la contraseña "<contrasena>"
     Entonces veo el mensaje de error "<mensaje>"

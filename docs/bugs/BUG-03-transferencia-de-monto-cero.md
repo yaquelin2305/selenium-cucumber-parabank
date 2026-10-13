@@ -11,6 +11,7 @@
 | **Detectado por** | Prueba automatizada de valores límite · escenario "Se rechaza una transferencia con monto cero" |
 | **Reportado por** | Yaquelin Rugel · 07-10-2026 |
 | **Reproducibilidad** | 1 de 1 ejecución automatizada · Reproducido manualmente el 07-10-2026 |
+| **Último re-test** | 13-10-2026 (automatizado): ❌ sigue presente |
 
 ## Resumen
 ParaBank acepta una transferencia de $0.00, muestra "Transfer Complete!" y guarda una transacción de $0.00

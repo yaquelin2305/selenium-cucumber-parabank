@@ -3,7 +3,7 @@
 | Campo | Detalle |
 |---|---|
 | **ID** | BUG-01 |
-| **Estado** | Abierto |
+||**Estado** | **No reproducible** en re-test del 13-10-2026 (detectado el 06-10-2026) |
 | **Severidad** | **Crítica** (seguridad: acceso a datos de una cuenta sin credenciales válidas) |
 | **Prioridad** | P1 |
 | **Módulo** | Autenticación · Inicio de sesión |
@@ -51,3 +51,17 @@ Es un defecto de seguridad en el control de acceso.
 ## Contexto
 ParaBank es un sitio público de demostración cuya base de datos se reinicia periódicamente.
 El comportamiento se registra tal como se observó en la fecha indicada.
+
+## Re-test
+
+| Fecha | Tipo | Resultado |
+|---|---|---|
+| 06-10-2026 | Automatizado (2 escenarios) + manual | ❌ Se reproduce: acceso con credenciales inválidas |
+| 13-10-2026 | Automatizado (2 escenarios) + manual | ✅ No se reproduce: ParaBank muestra "The username and password could not be verified." |
+
+![Re-test: ParaBank rechaza la contraseña incorrecta](evidencias/BUG-01-retest-2026-10-13.png)
+
+**Conclusión del re-test:** el comportamiento ya no se reproduce. Como ParaBank es un sitio de demostración
+cuya base de datos se reinicia, no es posible confirmar si hubo una corrección o un cambio en los datos.
+Los escenarios `@BUG-01` dejan de estar marcados como `@known-bug` y quedan como **pruebas de regresión**
+para detectar si el defecto vuelve a aparecer.
