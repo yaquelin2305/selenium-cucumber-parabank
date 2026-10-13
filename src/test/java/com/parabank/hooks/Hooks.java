@@ -18,12 +18,12 @@ public class Hooks {
         DriverFactory.initDriver();
     }
 
-        @After
+    @After
     public void cerrarNavegador(Scenario scenario) {
         try {
             if (scenario.isFailed() && DriverFactory.hayNavegador()) {
-                byte[] captura = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
                 scenario.log("URL al fallar: " + DriverFactory.getDriver().getCurrentUrl());
+                byte[] captura = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
                 scenario.attach(captura, "image/png", "Captura al fallar: " + scenario.getName());
             }
         } finally {

@@ -12,6 +12,7 @@ public class ResumenCuentasPage extends BasePage {
 
     private static final By ENLACE_CERRAR_SESION = By.linkText("Log Out");
     private static final By PRIMERA_CUENTA = By.cssSelector("#accountTable td a");
+    private static final By SALUDO = By.cssSelector("#leftPanel p.smallText");
 
     public void abrir() {
         navegarA("/overview.htm");
@@ -44,4 +45,14 @@ public class ResumenCuentasPage extends BasePage {
     private By celdaDeSaldo(String numeroDeCuenta) {
         return By.xpath("//table[@id='accountTable']//tr[td/a[normalize-space()='" + numeroDeCuenta + "']]/td[2]");
     }
+
+    public String saludo() {
+        return leerTexto(SALUDO);
+    }
+
+    public void cerrarSesion() {
+        hacerClic(ENLACE_CERRAR_SESION);
+    }
+
+    
 }

@@ -9,12 +9,13 @@ Característica: Inicio de sesión
     Dado que abro la página de inicio de ParaBank
 
   @smoke
-  Escenario: Inicio de sesión exitoso con un cliente válido
-    Cuando inicio sesión con un cliente válido
+  Escenario: Inicio de sesión exitoso con las credenciales de un cliente registrado
+    Dado que tengo un cliente registrado con su sesión cerrada
+    Cuando inicio sesión con las credenciales de ese cliente
     Entonces veo el resumen de mis cuentas
     Y veo la opción para cerrar sesión
+    Y veo el saludo con el nombre completo de ese cliente
 
-    
   @regression
   Esquema del escenario: Inicio de sesión rechazado por <caso>
     Cuando inicio sesión con el usuario "<usuario>" y la contraseña "<contrasena>"
