@@ -7,6 +7,7 @@ import com.parabank.pages.PagoCuentasPage;
 import com.parabank.pages.RegistroPage;
 import com.parabank.pages.ResumenCuentasPage;
 import com.parabank.pages.TransferenciaPage;
+import com.parabank.pages.PrestamoPage;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
@@ -197,5 +198,50 @@ public class CuentasSteps {
         ResumenCuentasPage resumen = new ResumenCuentasPage();
         resumen.abrir();
         return resumen.saldoDe(numeroDeCuenta);
+    }
+
+        private void solicitarPrestamo(String monto, String pagoInicial) {
+        saldoPrincipalAntes = saldoActualDe(cuentaPrincipal);
+        PrestamoPage prestamo = new PrestamoPage();
+        prestamo.abrir();
+        prestamo.solicitar(monto, pagoInicial, cuentaPrincipal);
+    }
+
+// ===================== Validación de saldos =====================
+    @Entonces("el saldo de mi cuenta principal no cambió")
+    public void elSaldoPrincipalNoCambio() {
+        assertThat(saldoActualDe(cuentaPrincipal))
+                .as("El saldo de la cuenta principal no debería cambiar")
+                .isEqualByComparingTo(saldoPrincipalAntes);
+    }
+
+
+
+    // ===================== Préstamos =====================
+
+    @Cuando("solicito un préstamo de {string} con un pago inicial de {string} desde mi cuenta principal")
+    public void solicitoUnPrestamo(String monto, String pagoInicial) {
+        solicitarPrestamo(monto, pagoInicial);
+    }
+
+    @Cuando("solicito un préstamo de {string} con un pago inicial mayor a mi saldo")
+    public void solicitoUnPrestamoConPieMayorAlSaldo(String monto) {
+        BigDecimal pieMayorAlSaldo = saldoActualDe(cuentaPrincipal).add(new BigDecimal("100.00"));
+        solicitarPrestamo(monto, pieMayorAlSaldo.toPlainString());
+    }
+
+    @Entonces("el préstamo queda en estado {string}")
+    public void elPrestamoQuedaEnEstado(String estadoEsperado) {
+        assertThat(new PrestamoPage().estado()).isEqualTo(estadoEsperado);
+    }
+
+    @Entonces("se crea una cuenta nueva para el préstamo")
+    public void seCreaUnaCuentaParaElPrestamo() {
+        String cuentaPrestamo = new PrestamoPage().numeroCuentaNueva();
+        ResumenCuentasPage resumen = new ResumenCuentasPage();
+        resumen.abrir();
+        assertThat(resumen.contieneCuenta(cuentaPrestamo))
+                .as("La cuenta del préstamo " + cuentaPrestamo + " debería aparecer en Accounts Overview")
+                .isTrue();
     }
 }
