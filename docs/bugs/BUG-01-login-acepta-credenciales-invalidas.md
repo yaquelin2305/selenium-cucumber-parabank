@@ -11,7 +11,7 @@
 | **Detectado por** | Prueba automatizada (escenarios "contraseña incorrecta" y "usuario inexistente") |
 | **Reportado por** | Yaquelin Rugel · 06-10-2026 |
 | **Reproducibilidad** | 2 de 2 ejecuciones automatizadas · Reproducido manualmente el 06-10-2026 |
-|**Último re-test** | 13-10-2026 (automatizado): ❌ sigue presente |
+| **Último re-test** | 13-10-2026 (automatizado y manual): ✅ no se reproduce |
 
 ## Resumen
 Al iniciar sesión con una contraseña incorrecta, o con un usuario que no existe, ParaBank no muestra un error:
