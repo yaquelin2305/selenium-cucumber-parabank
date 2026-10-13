@@ -43,8 +43,8 @@ public final class DriverFactory {
             }
             default -> {
                 ChromeOptions options = new ChromeOptions();
-                if (headless) {
-                    options.addArguments("--headless=new");
+                    if (headless) {
+                    options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage");
                 }
                 options.addArguments("--window-size=1920,1080");
                 yield new ChromeDriver(options);
