@@ -3,14 +3,15 @@
 | Campo | Detalle |
 |---|---|
 | **ID** | BUG-01 |
-||**Estado** | **No reproducible** en re-test del 13-10-2026 (detectado el 06-10-2026) |
+|**Estado** | **No reproducible** en re-test del 13-10-2026 (detectado el 06-10-2026) |
 | **Severidad** | **Crítica** (seguridad: acceso a datos de una cuenta sin credenciales válidas) |
 | **Prioridad** | P1 |
 | **Módulo** | Autenticación · Inicio de sesión |
 | **Ambiente** | https://parabank.parasoft.com · Microsoft Edge 154 · Windows 11 |
 | **Detectado por** | Prueba automatizada (escenarios "contraseña incorrecta" y "usuario inexistente") |
 | **Reportado por** | Yaquelin Rugel · 06-10-2026 |
-|  **Reproducibilidad** | 2 de 2 ejecuciones automatizadas · Reproducido manualmente el 06-10-2026 |
+| **Reproducibilidad** | 2 de 2 ejecuciones automatizadas · Reproducido manualmente el 06-10-2026 |
+|**Último re-test** | 13-10-2026 (automatizado): ❌ sigue presente |
 
 ## Resumen
 Al iniciar sesión con una contraseña incorrecta, o con un usuario que no existe, ParaBank no muestra un error:
